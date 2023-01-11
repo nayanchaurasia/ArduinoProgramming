@@ -1,3 +1,4 @@
+// This code is used to control the brightness of the led 
 int potpin=A1;
 int ledpin=11;
 int potval;
