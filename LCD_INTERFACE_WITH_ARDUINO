@@ -1,0 +1,132 @@
+#include<LiquidCrystal.h>
+int rs=7;
+int en=8;
+int d4=9;
+int d5=10;
+int d6=11;
+int d7=12;
+int dt=3000;
+int value;
+int redpin=13;
+int inputpin=A0;
+byte d[8]={
+  B00000,
+  B00000,
+  B01010,
+  B11111,
+  B11111,
+  B01110,
+  B00100,
+  B00000,
+  };
+  
+ byte c[8]={
+  B00000,
+  B00100,
+  B01110,
+  B01110,
+  B11111,
+  B11111,
+  B11111,
+  B00000,
+};
+
+byte s[8]={
+  B00000,
+  B00000,
+  B00000,
+  B00101,
+  B01111,
+  B00000,
+  B00000,
+  B00000,
+};                    
+
+
+LiquidCrystal lcd(rs,en,d4,d5,d6,d7);
+void setup() {
+  // put your setup code here, to run once:
+lcd.begin(16,2);
+lcd.createChar(0,d);
+lcd.createChar(1,s);
+pinMode(redpin,OUTPUT);
+lcd.createChar(2,c);
+pinMode(inputpin,INPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+value=analogRead(inputpin);
+if (value>=40)
+{
+lcd.clear();
+delay(dt);
+lcd.setCursor(4,0);
+lcd.write(byte(0));
+lcd.print("HAPPY!!");
+lcd.write(byte(0));
+delay(dt);
+
+digitalWrite(redpin,HIGH);
+
+lcd.setCursor(2,2);
+lcd.write(byte(0));
+lcd.print("ANNIVERSARY");
+lcd.write(byte(0));
+delay(dt);
+
+lcd.clear();
+
+// part 2
+lcd.setCursor(1,0);
+lcd.print("DADA JI_DADI JI");
+delay(dt);
+
+lcd.setCursor(0,1);
+lcd.print("ITS__YEARS ALONG");
+delay(dt);
+
+lcd.clear();
+
+// part3
+lcd.setCursor(1,0);
+lcd.print("U ARE THE BEST");
+delay(dt);
+lcd.clear();
+
+lcd.setCursor(0,0);
+lcd.print("HERE IS A SMALL-");
+delay(dt);
+
+lcd.setCursor(0,1);
+lcd.print("GIFT..FROM PAPA");
+delay(dt);
+
+lcd.clear();
+
+lcd.setCursor(0,0);
+lcd.print("THE BRANDED SOFT"); 
+delay(dt);
+
+lcd.setCursor(0,1);
+lcd.write(byte(1));
+lcd.print("SHOES OF CAMPUS");
+delay(dt);
+
+lcd.clear();
+
+lcd.setCursor(0,0);
+lcd.print("LETS BEGIN THE"); 
+delay(dt);
+
+lcd.setCursor(4,1);
+lcd.write(byte(2));
+lcd.print("PARTY");
+lcd.write(byte(2));
+delay(dt);
+
+lcd.clear();
+
+digitalWrite(redpin,LOW);
+}
+}
